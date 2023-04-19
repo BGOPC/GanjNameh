@@ -7,7 +7,7 @@ from django.shortcuts import resolve_url, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, CreateView
-from MiniCodes import settings
+from Ganj import settings
 from . import forms
 
 
@@ -38,6 +38,7 @@ class newUserView(SuccessMessageMixin, CreateView):
     success_message = "Your profile was created successfully"
 
 
+# noinspection PyMethodMayBeStatic
 class LogoutView(View):
     def get(self, request):
         logout(request)
