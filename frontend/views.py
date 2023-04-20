@@ -11,3 +11,11 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['user'] = self.request.user
         return context
+
+
+class SupportView(TemplateView):
+    template_name = "frontend/support.html"
+
+    def get_context_daxta(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
