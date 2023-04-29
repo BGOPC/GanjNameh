@@ -31,7 +31,7 @@ class Booklet(models.Model):
     booklet_file = models.FileField(upload_to='booklets/')
 
     def __str__(self):
-        return self.name
+        return f"Booklets, {self.name}: {self.category}"
 
 
 class Journal(models.Model):
@@ -49,3 +49,6 @@ class Journal(models.Model):
     description = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     booklet_file = models.FileField(upload_to='journals/')
+
+    def __str__(self):
+        return f"Journals, {self.name}: {self.category}"
