@@ -1,11 +1,13 @@
 from django.db import models
 from users.models import User
 
+ADMIN = User.objects.get(id=1)
+
 
 # Create your models here.
 
 class Booklet(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.SET(ADMIN))
     name = models.CharField(max_length=100, null=False, name="Booklet Name")
     category = models.CharField(max_length=50, choices=[
         ("Math", "Math"),
@@ -35,7 +37,7 @@ class Booklet(models.Model):
 
 
 class Journal(models.Model):
-    author = 1  # an admin user will be created
+    author = ADMIN
     name = models.CharField(max_length=100, null=False, name="Booklet Name")
     category = models.CharField(max_length=50, choices=[
         ("Physics", "Physics"),
