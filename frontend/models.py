@@ -35,7 +35,7 @@ class Booklet(models.Model):
 
 
 class Journal(models.Model):
-    author = 1
+    author = 1  # an admin user will be created
     name = models.CharField(max_length=100, null=False, name="Booklet Name")
     category = models.CharField(max_length=50, choices=[
         ("Physics", "Physics"),
