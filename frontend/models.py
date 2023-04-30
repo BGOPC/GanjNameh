@@ -28,7 +28,7 @@ class Booklet(models.Model):
     ], null=False, default="Subject")
     description = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    booklet_file = models.FileField(upload_to='booklets/')
+    booklet_file = models.FileField(upload_to='booklets/', blank=True)
 
     def __str__(self):
         return f"Booklets, {self.name}: {self.category}"
@@ -38,17 +38,17 @@ class Journal(models.Model):
     author = 1
     name = models.CharField(max_length=100, null=False, name="Booklet Name")
     category = models.CharField(max_length=50, choices=[
-        ("Physics"),
-        ("Movie and comic"),
-        ("Hello copter"),
-        ("Biology and Chemistry"),
-        ("Computer"),
-        ("Philosophy"),
-        ("Writing"),
+        ("Physics", "Physics"),
+        ("Movies and comics", "Movies and comics"),
+        ("Helli copter", "Helli copter"),
+        ("Biology and Chemistry", "Biology and Chemistry"),
+        ("Computer", "Computer"),
+        ("Philosophy", "Philosophy"),
+        ("Writing", "Writing"),
     ], null=False, default="Subject")
     description = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    booklet_file = models.FileField(upload_to='journals/')
+    journal_file = models.FileField(upload_to='journals/', blank=True)
 
     def __str__(self):
         return f"Journals, {self.name}: {self.category}"
