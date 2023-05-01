@@ -7,5 +7,5 @@ urlpatterns = [
     path("Booklets/Booklet/<int:booklet_id>", views.BookletsView.as_view(), name="booklet-page"),
     path("Journals", views.JournalsView.as_view(), name="journals-page"),
     path("Booklets/Booklet/<int:journal_id>", views.JournalView.as_view(), name="journal-page"),
-    path("support", views.SupportView.as_view(), name="support"),
+    path("contact", views.ContactView.as_view(), name="contact-us"),
 ]
