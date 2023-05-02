@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
-from django.views.generic import View, TemplateView, FormView
+from django.urls import reverse_lazy, reverse
+from django.views.generic import View, TemplateView, FormView, CreateView
 from . import forms
 from .models import Journal, Booklet
 
@@ -43,6 +43,26 @@ class BookletView(TemplateView):
         booklet_id = kwargs.get('booklet_id', -1)
         context['booklet'] = get_object_or_404(Booklet, id=booklet_id)
         return context
+
+
+class UploadBookletView(CreateView):
+    template_name = 'frontend/uploadBooklet.html'
+    form_class = forms.UploadBookletForm
+    success_url = reverse_lazy('booklet-page')
+
+    def form_valid(self, form):
+        booklet = form.save(commit=False)
+        booklet.author = self.request.user
+        booklet.save()
+        return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['files'] = self.request.FILES
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('booklet-page', args=[self.object.id])
 
 
 class ContactView(FormView):
